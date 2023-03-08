@@ -1,0 +1,181 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Laptop customiser should match snapshot 1`] = `
+<div>
+  <header>
+    <div
+      class="header__content"
+    >
+      <a
+        class="header__link"
+        href="https://www.apple.com/in/macbook-pro"
+      >
+        <strong>
+          MacBook Pro
+        </strong>
+      </a>
+    </div>
+  </header>
+  <main>
+    <div
+      class="main__container"
+    >
+      <div
+        class="main__content"
+      >
+        <section>
+          <img
+            alt="macbook pro"
+            class="macbook-img"
+            src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mbp16touch-space-select-201911?wid=1808&hei=1686&fmt=jpeg&qlt=80&.v=1572825197207"
+          />
+        </section>
+        <section
+          class="configuration"
+        >
+          <h1>
+            loading...
+          </h1>
+        </section>
+      </div>
+    </div>
+    <div
+      class="price container"
+    >
+      <div
+        class="price__content"
+      >
+        <h1
+          class="price__value"
+        >
+          Total:
+           loading...
+        </h1>
+      </div>
+    </div>
+  </main>
+</div>
+`;
+
+exports[`Laptop customiser should match snapshot after processor_a is clicked 1`] = `
+<div>
+  <header>
+    <div
+      class="header__content"
+    >
+      <a
+        class="header__link"
+        href="https://www.apple.com/in/macbook-pro"
+      >
+        <strong>
+          MacBook Pro
+        </strong>
+      </a>
+    </div>
+  </header>
+  <main>
+    <div
+      class="main__container"
+    >
+      <div
+        class="main__content"
+      >
+        <section>
+          <img
+            alt="macbook pro"
+            class="macbook-img"
+            src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mbp16touch-space-select-201911?wid=1808&hei=1686&fmt=jpeg&qlt=80&.v=1572825197207"
+          />
+        </section>
+        <section
+          class="configuration"
+        >
+          <h1
+            class="mt-0"
+          >
+            Customise your 16‑inch MacBook Pro - Space Grey
+          </h1>
+          <ul
+            class="summary-list"
+          >
+            <li
+              data-testid="processor_desc"
+            >
+              2.3GHz 8-core 9th-generation Intel Core processor, Turbo Boost up to 4.8GHz
+            </li>
+            <li>
+              16-inch Retina display with True Tone
+            </li>
+            <li>
+              Four Thunderbolt 3 ports
+            </li>
+            <li>
+              Touch Bar and Touch ID
+            </li>
+            <li>
+              Backlit Magic Keyboard - US English
+            </li>
+          </ul>
+          <div
+            class="component"
+          >
+            <h3
+              class="component__name"
+            >
+              Processor
+            </h3>
+            <ul>
+              <li
+                class="variant variant--selected"
+                data-testid="Processor_a"
+              >
+                <p
+                  class="variant__name"
+                >
+                  <strong>
+                    2.3GHz 8-core 9th-generation Intel Core processor, Turbo Boost up to 4.8GHz
+                  </strong>
+                </p>
+              </li>
+              <li
+                class="variant "
+                data-testid="Processor_b"
+              >
+                <p
+                  class="variant__name"
+                >
+                  <strong>
+                    2.4GHz 8-core 9th-generation Intel Core processor, Turbo Boost up to 5.0GHz
+                  </strong>
+                </p>
+                <p>
+                  + ₹
+                  20000
+                </p>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div
+      class="price container"
+    >
+      <div
+        class="price__content"
+      >
+        <h1
+          class="price__value"
+        >
+          Total:
+          <span
+            data-testid="total-price"
+          >
+             ₹239900
+          </span>
+        </h1>
+      </div>
+    </div>
+  </main>
+</div>
+`;

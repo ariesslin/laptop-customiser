@@ -30,7 +30,7 @@ describe("Laptop customiser", () => {
     expect(getByTestId("total-price")).toHaveTextContent(`₹259900`);
   });
 
-  it("should show the list of processor", async () => {
+  it("should show the list of processors", async () => {
     const { getByTestId } = render(<App />);
     await waitFor( () => {
       expect(getByTestId(`Processor_a`)).toBeVisible();
@@ -45,7 +45,7 @@ describe("Laptop customiser", () => {
     });
   });
 
-  it("should get the processor selected when processor b is clicked", async () => {
+  it("should get the processor b selected when processor b is clicked", async () => {
     const { getByTestId } = render(<App />);
     await waitFor(() => {
       fireEvent.click(getByTestId(`Processor_b`));
@@ -60,11 +60,19 @@ describe("Laptop customiser", () => {
     });
   });
 
-  it("should get the selected processor description when processor b is clicked", async () => {
+  it("should get the selected processor b description when processor b is clicked", async () => {
     const { getByTestId } = render(<App />);
     await waitFor(() => {
       fireEvent.click(getByTestId(`Processor_b`));
         expect(getByTestId("processor_desc")).toHaveTextContent("2.4GHz 8-core 9th-generation Intel Core processor, Turbo Boost up to 5.0GHz");
     });
+  });
+
+  it("should match snapshot after processor_a is clicked", async () => {
+    const { container, getByTestId } = render(<App />);
+    await waitFor(() => {
+      fireEvent.click(getByTestId(`Processor_a`));
+    });
+    expect(container).toMatchSnapshot();
   });
 });
