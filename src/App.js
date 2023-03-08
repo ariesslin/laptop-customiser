@@ -105,7 +105,7 @@ const App = () => {
                     Customise your 16‑inch MacBook Pro - Space Grey
                   </h1>
                   <ul className="summary-list">
-                    <li>{processorList.find((c) => c.selected)?.variant}</li>
+                    <li data-testid="processor_desc">{processorList.find((c) => c.selected)?.variant}</li>
                     <li>16-inch Retina display with True Tone</li>
                     <li>Four Thunderbolt 3 ports</li>
                     <li>Touch Bar and Touch ID</li>
