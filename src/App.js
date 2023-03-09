@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Processor from "./Processor";
 import { getDefaultPrice } from "./service";
 
 const App = () => {
@@ -112,26 +113,7 @@ const App = () => {
                     <li>Backlit Magic Keyboard - US English</li>
                   </ul>
                   {!!processorList.length && (
-                    <div className="component">
-                      <h3 className="component__name">Processor</h3>
-                      <ul>
-                        {processorList.map((v) => (
-                          <li
-                            key={`Processor_${v.serialNo}`}
-                            className={`variant ${
-                              v.selected ? "variant--selected" : ""
-                            }`}
-                            data-testid={`Processor_${v.serialNo}`}
-                            onClick={() => setSelectedVariant(v.serialNo)}
-                          >
-                            <p className="variant__name">
-                              <strong>{v.variant}</strong>
-                            </p>
-                            {v.addOnPrice > 0 && <p>+ ₹{v.addOnPrice}</p>}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                    <Processor processorList={processorList} setSelectedVariant={setSelectedVariant}/>
                   )}
                 </>
               )}
