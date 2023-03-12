@@ -1,20 +1,17 @@
 import React from "react";
 
-const Processor = ({processorList, setSelectedVariant} )=> {
+const Variant = ({name, processorList, setSelectedVariant, selectedVariantSerialNo} )=> {
     return (
         <>
         <div className="component">
-        <h3 className="component__name">Processor</h3>
+        <h3 className="component__name">{name}</h3>
         <ul>
           {processorList.map((v) => (
             <li
               key={`Processor_${v.serialNo}`}
-              className={`variant ${
-                v.selected ? "variant--selected" : ""
-              }`}
+              className={`variant ${selectedVariantSerialNo === v.serialNo ? "variant--selected" : ""}`}
               data-testid={`Processor_${v.serialNo}`}
-              onClick={() => setSelectedVariant(v.serialNo)}
-            >
+              onClick={() => setSelectedVariant(v.serialNo)}>
               <p className="variant__name">
                 <strong>{v.variant}</strong>
               </p>
@@ -29,4 +26,4 @@ const Processor = ({processorList, setSelectedVariant} )=> {
 
 }
 
-export default Processor;
+export default Variant;

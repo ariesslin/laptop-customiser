@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import Processor from "./Processor";
-import { getDefaultPrice } from "./service";
+import React, {useCallback, useEffect, useState} from "react";
+import Variant from "./Variant";
+import {getDefaultPrice} from "./service";
 
 const App = () => {
   const [loading, setLoading] = useState(false);
@@ -9,24 +9,21 @@ const App = () => {
   const [priceLoading, setPriceLoading] = useState(false);
   const [price, setPrice] = useState(0);
   const [priceError, setPriceError] = useState(null);
+  const [selectedVariantSerialNo, setSelectedVariantSerialNo] = useState(
+      {
+    proe: ''
+  })
 
   useEffect(() => {
     const getMacComponents = () => {
       return fetch(`http://localhost:3004/components`)
         .then((response) => response.json())
         .then((data) => {
-          const newData = [];
-          for (let i = 0; i < data.length; i++) {
-            if (data[i].type === "proe") {
-              if (data[i].default === true) {
-                data[i].selected = true;
-              } else {
-                data[i].selected = false;
-              }
-              newData.push(data[i]);
-            }
-          }
-          setProcessorList(newData);
+          const processorComponents = data.filter(component => component.type === "proe");
+          setSelectedVariantSerialNo({
+            proe: processorComponents.find(component => component.default).serialNo
+          });
+          setProcessorList(processorComponents);
           setLoading(false);
         })
         .catch(() => {
@@ -49,28 +46,18 @@ const App = () => {
       });
   }, []);
 
-  const setSelectedVariant = (variantSerialNo) => {
-    const newArr = [];
-    for (let i = 0; i < processorList.length; i++) {
-      const variant = processorList[i];
-      newArr.push({
-        ...variant,
-        selected: variant.serialNo === variantSerialNo,
-      });
-    }
-    setProcessorList(newArr);
-  };
+  const setSelectedVariant = useCallback( (variantSerialNo) => {
+    setSelectedVariantSerialNo({
+      proe: variantSerialNo
+    })
+  }, []);
+
+  const getSelectedVariant = () => {
+    return processorList.find(processor => processor.serialNo === selectedVariantSerialNo.proe);
+  }
 
   const getAddOnPrice = () => {
-    let selectedProcessor = null;
-    for (let i = 0; i < processorList.length; i++) {
-      const variant = processorList[i];
-      if (variant.selected) {
-        selectedProcessor = variant;
-        break;
-      }
-    }
-    return selectedProcessor?.addOnPrice ?? 0;
+    return getSelectedVariant()?.addOnPrice ?? 0;
   };
 
   return (
@@ -106,14 +93,19 @@ const App = () => {
                     Customise your 16‑inch MacBook Pro - Space Grey
                   </h1>
                   <ul className="summary-list">
-                    <li data-testid="processor_desc">{processorList.find((c) => c.selected)?.variant}</li>
+                    <li data-testid="processor_desc">{getSelectedVariant()?.variant}</li>
                     <li>16-inch Retina display with True Tone</li>
                     <li>Four Thunderbolt 3 ports</li>
                     <li>Touch Bar and Touch ID</li>
                     <li>Backlit Magic Keyboard - US English</li>
                   </ul>
                   {!!processorList.length && (
-                    <Processor processorList={processorList} setSelectedVariant={setSelectedVariant}/>
+                    <Variant
+                        name="Processor"
+                        processorList={processorList}
+                        setSelectedVariant={setSelectedVariant}
+                        selectedVariantSerialNo={selectedVariantSerialNo.proe}
+                    />
                   )}
                 </>
               )}
